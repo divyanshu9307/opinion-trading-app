@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import logger from './logger.js';
 import 'dotenv/config';
+import { fetchLiveData } from './services/service.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,6 +23,8 @@ const connectDB = async () => {
 
 app.get('/', (req, res) => {
   res.send('opinion trading app');
+  fetchLiveData();
+//   fetchFinalScores();
 });
 
 await connectDB();
